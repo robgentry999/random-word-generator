@@ -30,25 +30,63 @@ function generateRandomIntegerInRange(min, count) {
 button2.addEventListener('click' , chooseRandom);
 
      function chooseRandom(){
+        startCountdown(5)
        windiv = document.getElementById('winners-div');
         const value5 = generateRandomIntegerInRange(1, count);
         console.log(value5)
        words = document.getElementById(value5).value
-       console.log(words)
-       windiv.innerHTML =+ `words`
-       console.log(words)
+       document.getElementById('base').innerHTML = "";
+       document.getElementById('buttons').innerHTML = "";
+       var winner = 
+        newtext = document.createElement('h1');
+        newtext.className = "winner"
+        newtext.textContent = words
+        // console.log(winner)
+        var restart = 
+            newbutton = document.createElement('button')
+            newbutton.className = "button button-17 new-button"
+            newbutton.id = "new-button"
+            newbutton.textContent = "Restart"
+            buttondiv = document.getElementById('buttons')
+        setTimeout(function(){
+        const insert = document.getElementById('winners-div')
 
+           insert.appendChild(winner); 
 
-    //    console.log(words)
-    //     displayWinner(words)
-    //     return words
+            //document.getElementsByTagName('body')[0].appendChild(winner); 
+        }, 6000)
+        setTimeout(function(){
+            buttondiv.appendChild(restart);
+            restartButton = document.getElementById('new-button')
+            restartButton.addEventListener('click', refreshPage)
+        },8000)
+
     }
+    // Countdown Timer
+    function startCountdown(seconds) {
+        let counter = seconds;
+        const insert = document.getElementById('winners-div')
+        var countdown = 
+            countdownnum = document.createElement('h2')
+            countdownnum.className = "countdown"
 
 
-    // function displayWinner(words) {
-    //    windiv = document.getElementById('winner-div');
-    //     windiv.innerHTML =+ words
-    //     console.log(words)
-    // }
+        const interval = setInterval(() => {
+            countdownnum.textContent = counter
+            insert.appendChild(countdown)
+            //insert.innerHTML = countdown
+          console.log(counter);
+          counter--;
+          if (counter < 0 ) {
+            clearInterval(interval);
+            insert.textContent = "";
+            console.log('Ding!');
+          }
+        }, 1000);
+      }
 
 
+function refreshPage() {
+    console.log('1')
+    window.location.reload()
+}
